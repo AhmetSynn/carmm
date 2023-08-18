@@ -1,0 +1,46 @@
+import matplotlib.pyplot as plt
+import math
+
+A = 5862  
+p = 0.2643  
+C = 21.79  
+
+i = 3
+i_list = []
+result_list = []
+while i < 20:
+    r = i
+    x = A * math.exp((-r) / p) - (C / r ** 6)
+    result_list.append(x)
+    i_list.append(i)
+    i += 0.0005
+
+plt.plot(i_list, result_list, color='red', linestyle='-', label='Line', linewidth=1.5)
+
+
+plt.xlabel('Distance(Â)')
+plt.ylabel('Energy (eV)')
+plt.title('MM Curve of NaCl', fontdict={'fontsize': 15, 'fontweight': 500, 'fontname': 'Arial', 'style': 'italic', 'color': '#FF0000'})
+
+plt.legend()
+plt.grid(True)
+plt.xlim(0, 20)
+plt.ylim(-0.01, 0.04)
+
+# Find the smallest value in the result_list
+smallest_value = min(result_list)
+smallest_index = result_list.index(smallest_value)
+smallest_x = i_list[smallest_index]
+smallest_y = smallest_value
+
+# Annotate the lowest point with horizontal and vertical lines
+plt.axhline(smallest_y, color='gray', linestyle='--')
+plt.axvline(smallest_x, color='gray', linestyle='--')
+
+# Add a label for the lowest Energy
+
+             
+
+plt.show()
+
+print("The smallest value of energy is:", smallest_value)
