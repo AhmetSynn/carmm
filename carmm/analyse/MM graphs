@@ -1,0 +1,149 @@
+import matplotlib.pyplot as plt
+import math
+
+# First plot
+A = 2314.700
+p = 0.2903
+C = 29.06
+
+i = 2
+i_list = []
+result_list = []
+while i < 20:
+    r = i
+    x = A * math.exp((-r) / p) - (C / r ** 6)
+    result_list.append(x)
+    i_list.append(i)
+    i += 0.0005
+
+plt.figure(figsize=(12, 5))  # Set the figure size (width, height)
+plt.subplot(1, 2, 1)  # Create a subplot with 1 row and 2 columns, and select the first plot
+plt.plot(i_list, result_list, color='red', linestyle='-', label='Line', linewidth=1.5)
+plt.xlabel('Distance (Å)')
+plt.ylabel('Energy (eV)')
+plt.title('MM Curve of NaCl', fontdict={'fontsize': 15, 'fontweight': 500, 'fontname': 'Arial', 'style': 'italic', 'color': '#FF0000'})
+plt.legend()
+plt.grid(True)
+plt.xlim(0, 25)  # Adjusted x-axis limit for the first plot
+plt.ylim(-0.05, 0.05)
+
+# Find the smallest value in the result_list
+smallest_value = min(result_list)
+smallest_index = result_list.index(smallest_value)
+smallest_x = i_list[smallest_index]
+smallest_y = smallest_value
+
+# Annotate the lowest point with horizontal and vertical lines
+plt.axhline(smallest_y, color='gray', linestyle='--')
+plt.axvline(smallest_x, color='gray', linestyle='--')
+
+# Add labels for the lowest Energy
+plt.annotate(f"Min point: {smallest_x:.4f},{smallest_y:.4f}",
+             xy=(smallest_x, smallest_y),
+             xytext=(smallest_x + 2, smallest_y + -0.008),
+             arrowprops=dict(facecolor='black', shrink=0.05, width=1, headwidth=7),
+             fontsize=10,
+             color='black')
+
+# Second plot
+A = 5862
+p = 0.2643
+C = 0.00
+
+i = 3
+i_list = []
+result_list = []
+while i < 20:
+    r = i
+    x = A * math.exp((-r) / p) - (C / r ** 6)
+    result_list.append(x)
+    i_list.append(i)
+    i += 0.0005
+
+plt.subplot(1, 2, 2)  # Select the second plot
+plt.plot(i_list, result_list, color='red', linestyle='-', label='Line', linewidth=1.5)
+plt.xlabel('Distance (Å)')
+plt.ylabel('Energy (eV)')
+plt.title('MM Curve of NaCl', fontdict={'fontsize': 15, 'fontweight': 500, 'fontname': 'Arial', 'style': 'italic', 'color': '#FF0000'})
+plt.legend()
+plt.grid(True)
+plt.xlim(0, 25)  # Adjusted x-axis limit for the second plot
+plt.ylim(-0.01, 0.04)
+
+# Find the smallest value in the result_list
+smallest_value = min(result_list)
+smallest_index = result_list.index(smallest_value)
+smallest_x = i_list[smallest_index]
+smallest_y = smallest_value
+
+# Annotate the lowest point with horizontal and vertical lines
+plt.axhline(smallest_y, color='gray', linestyle='--')
+plt.axvline(smallest_x, color='gray', linestyle='--')
+
+# Add labels for the lowest Energy
+plt.annotate(f"Min point: {smallest_x:.4f},{smallest_y:.4f}",
+             xy=(smallest_x, smallest_y),
+             xytext=(smallest_x + 2, smallest_y + 0.005),
+             arrowprops=dict(facecolor='black', shrink=0.05),
+             fontsize=10,
+             color='black')
+
+plt.tight_layout()  # Adjust spacing between plots
+plt.show()
+
+print("The smallest value of energy is:", smallest_value)
+
+
+import matplotlib.pyplot as plt
+import math
+
+A = 62398.63126139 
+p = 0.2643  
+C = 21.79  
+
+i = 3
+i_list = []
+result_list = []
+while i < 20:
+    r = i
+    x = (A * math.exp((-r) / p)) - (C / r ** 6)
+    result_list.append(x)
+    i_list.append(i)
+    i += 0.0005
+
+plt.plot(i_list, result_list, color='red', linestyle='-', label='Line', linewidth=1.5)
+
+
+plt.xlabel('Distance(Â)')
+plt.ylabel('Energy (eV)')
+plt.title('MM Curve of NaCl', fontdict={'fontsize': 15, 'fontweight': 500, 'fontname': 'Arial', 'style': 'italic', 'color': '#FF0000'})
+
+plt.legend()
+plt.grid(True)
+plt.xlim(0, 20)
+plt.ylim(-0.01, 0.04)
+
+# Find the smallest value in the result_list
+smallest_value = min(result_list)
+smallest_index = result_list.index(smallest_value)
+smallest_x = i_list[smallest_index]
+smallest_y = smallest_value
+
+# Annotate the lowest point with horizontal and vertical lines
+plt.axhline(smallest_y, color='gray', linestyle='--')
+plt.axvline(smallest_x, color='gray', linestyle='--')
+
+
+plt.annotate(f"Min point: {smallest_x:.4f},{smallest_y:.4f}",
+             xy=(smallest_x, smallest_y),
+             xytext=(smallest_x + 2, smallest_y + -0.005),
+             arrowprops=dict(facecolor='black', shrink=0.05, width=1, headwidth=7),
+             fontsize=10,
+             color='black')
+# Add a label for the lowest Energy
+
+             
+
+plt.show()
+
+print("The smallest value of energy is:", smallest_value)
