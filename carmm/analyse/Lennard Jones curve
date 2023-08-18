@@ -1,0 +1,48 @@
+import matplotlib.pyplot as plt
+e = 1.60217663e-19
+E0 = 8.854e-12
+E =  1.472
+S = 2.21737
+m = 6
+n = 12
+i = 1
+i_list = []
+result_list = []
+import math
+
+pi = math.pi
+while i < 20:
+    r = i
+    x = (E * (((n/m - n) * (S/r)**m) - ((m/m - n) * (S/r)**n))+(((1*1*e**2)/(4*pi*E0*r))*6.242e+18))
+    
+    result_list.append(x)
+    i_list.append(i)
+    i += 0.0005
+
+plt.figure(figsize=(12, 5))
+plt.subplot(1, 2, 1)
+plt.plot(i_list, result_list, color='red', linestyle='-', label='Line', linewidth=1.5)
+plt.xlabel('Distance (Å)')
+plt.ylabel('Energy (eV)')
+plt.title('MM Curve of NaCl', fontdict={'fontsize': 15, 'fontweight': 500, 'fontname': 'Arial', 'style': 'italic', 'color': '#FF0000'})
+plt.legend()
+plt.grid(True)
+plt.xlim(0, 25)
+plt.ylim(-5, 5)
+
+max_value = min(result_list)
+max_index = result_list.index(max_value)
+max_x = i_list[max_index]
+max_y = max_value
+
+plt.axhline(max_y, color='blue', linestyle='--')
+plt.axvline(max_x, color='blue', linestyle='--')
+
+plt.annotate(f"({max_x:.4f},{max_y:.4f})",
+             xy=(max_x, max_y),
+             xytext=(max_x - -0.2, max_y + -0.4),  # Corrected the minus sign
+             fontsize=10,
+             color='black')
+
+plt.tight_layout()
+plt.show()
